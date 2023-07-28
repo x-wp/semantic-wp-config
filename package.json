@@ -1,14 +1,18 @@
 {
-  "name": "your-name-here",
-  "version": "0.0.0",
+  "name": "semantic-release-wp-config",
+  "version": "1.0.0",
   "license": "MIT",
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/your_org/your_repo.git"
+    "url": "https://github.com/oblakstudio/semantic-release-wp-config.git"
   },
-  "bugs": "https://githu.com/your_org/your_repo/issues",
+  "bugs": "https://githu.com/your_org/semantic-release-wp-config/issues",
   "keywords": [],
+  "author": {
+    "name": "Oblak Studio",
+    "email": "support@oblak.studio"
+  },
   "scripts": {
     "build": "rimraf dist && tsc",
     "watch": "rimraf dist && tsc --watch",
@@ -26,7 +30,11 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.0.4",
+    "semantic-release-replace-plugin": "^1.2.7"
   },
   "devDependencies": {
     "@types/jest": "^29.5.3",
@@ -42,6 +50,7 @@
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
+    "semantic-release": "^21"
   },
   "jest": {
     "moduleFileExtensions": [
