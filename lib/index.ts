@@ -1,16 +1,22 @@
+import * as path from 'node:path';
+
 declare type ConfigOpts = {
   branches: string[];
   type: 'plugin' | 'theme';
   name: string;
+  slug: string;
   changelog: string;
   files: File[];
-};
-
-declare type VersionType = 'readme' | 'header' | 'constant';
-
-declare type File = {
-  path: string[];
-  type: VersionType;
+  publishAssets: boolean;
+  wp: {
+    withAssets?: boolean;
+    withReadme?: boolean;
+    withVersionFile?: boolean;
+    releasePath?: string;
+    versionFiles?: string[];
+    include?: string[];
+    exclude?: string[];
+  };
 };
 
 declare type SemanticReleaseConfig = {
@@ -21,60 +27,10 @@ declare type SemanticReleaseConfig = {
 declare type SemanticReleasePluginConfig = [string, any] | string;
 
 export function generateConfig(opts: ConfigOpts): SemanticReleaseConfig {
-  const regexes: Record<
-    VersionType,
-    { from: RegExp | string; to: RegExp | string }
-  > = {
-    header: {
-      from: /^(\s*\*\s*Version:\s+)\K.*/,
-      to: '${1}${nextRelease.version}',
-    },
-    readme: {
-      from: /^Stable tag:\s*(\S+)/,
-      to: 'Stable tag: ${nextRelease.version}',
-    },
-    constant: {
-      from: /define\(\s+'(\w+)', '(\d.\d.\d)'\s+\)/,
-      to: "define('${1}', '${nextRelease.version}')",
-    },
-  };
   const baseConfig: SemanticReleaseConfig = {
-    branches: opts?.branches ?? ['master', 'main'],
+    branches: opts.branches,
     plugins: [],
   };
-
-  const files =
-    opts?.files?.map((file) => {
-      return {
-        files: file.path,
-        from: regexes[file.type].from,
-        to: regexes[file.type].to,
-        results: file.path.map((path) => ({
-          file: path,
-          hasChanged: true,
-          numMatches: 1,
-          numReplacements: 1,
-        })),
-        countMatches: true,
-      };
-    }) ?? [];
-
-  if (opts.type === 'plugin') {
-    files.push({
-      files: [`${opts.name}.php`],
-      from: regexes.header.from,
-      to: regexes.header.to,
-      results: [
-        {
-          file: `${opts.name}.php`,
-          hasChanged: true,
-          numMatches: 1,
-          numReplacements: 1,
-        },
-      ],
-      countMatches: true,
-    });
-  }
 
   if (opts?.changelog) {
     baseConfig.plugins.push([
@@ -87,77 +43,55 @@ export function generateConfig(opts: ConfigOpts): SemanticReleaseConfig {
 
   baseConfig.plugins.push('@semantic-release/commit-analyzer');
   baseConfig.plugins.push('@semantic-release/release-notes-generator');
-
   baseConfig.plugins.push([
-    '@semantic-release/exec',
+    '@semantic-release/git',
     {
-      prepareCmd: 'echo "${nextRelease.version}" > /tmp/VERSION',
+      assets: ['CHANGELOG.md'],
+      message:
+        'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
     },
   ]);
 
-  if (files?.length > 0) {
-    baseConfig.plugins.push([
-      'semantic-release-replace-plugin',
-      {
-        replacements: files,
-      },
-    ]);
-  }
+  baseConfig.plugins.push([
+    'semantic-release-wp-plugin',
+    {
+      type: opts.type,
+      slug: opts.slug,
+      withAssets: opts?.wp?.withAssets ?? false,
+      withReadme: opts?.wp?.withReadme ?? false,
+      withVersionFile: opts?.wp?.withVersionFile ?? true,
+      releasePath: opts?.wp?.releasePath ?? '/tmp/wp-release',
+      versionFiles: opts?.wp?.versionFiles ?? [],
+      include: opts?.wp?.include ?? [],
+      exclude: opts?.wp?.exclude ?? [],
+    },
+  ]);
 
-  if (files?.length > 0 && opts?.changelog) {
-    baseConfig.plugins.push([
-      '@semantic-release/git',
-      {
-        assets: [opts.changelog, new Set(files.map((file) => file.files))],
-        message:
-          'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
-      },
-    ]);
+  const ghAssets = [
+    {
+      path: path.join(
+        opts?.wp?.releasePath ?? '/tmp/wp-release',
+        'package.zip',
+      ),
+      label: opts.name + ' v${nextRelease.version}',
+      name: opts.slug + '-${nextRelease.version}.zip',
+    },
+  ];
+
+  if (opts?.publishAssets) {
+    ghAssets.push({
+      path: path.join(opts?.wp?.releasePath ?? '/tmp/wp-release', 'assets.zip'),
+      label: opts.name + ' Assets v${nextRelease.version}',
+      name: opts.slug + '-assets-${nextRelease.version}.zip',
+    });
   }
 
   baseConfig.plugins.push([
     '@semantic-release/github',
     {
-      assets: [
-        {
-          path: '/tmp/release.zip',
-          label: 'Version ${nextRelease.version}',
-          name: opts.name + '-${nextRelease.version}.zip',
-        },
-      ],
+      assets: ghAssets,
     },
   ]);
 
   return baseConfig;
-  //   plugins: [
-  //     [
-  //       '@semantic-release/changelog',
-  //       {
-  //         changelogFile: 'CHANGELOG.md',
-  //       },
-  //     ],
-  //     '@semantic-release/commit-analyzer',
-  //     '@semantic-release/release-notes-generator',
-  //     [
-  //       '@semantic-release/git',
-  //       {
-  //         assets: ['CHANGELOG.md', 'anci-product-manager.php'],
-  //         message:
-  //           'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
-  //       },
-  //     ],
-  //     [
-  //       '@semantic-release/github',
-  //       {
-  //         assets: [
-  //           {
-  //             path: '/tmp/release.zip',
-  //             label: 'Version ${nextRelease.version}',
-  //             name: 'anci-product-manager-${nextRelease.version}.zip',
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   ],
-  // };
 }

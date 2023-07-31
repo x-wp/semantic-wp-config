@@ -31,10 +31,9 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.0.4",
-    "semantic-release-replace-plugin": "^1.2.7"
+    "semantic-release-wp-plugin": "^1.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.3",
