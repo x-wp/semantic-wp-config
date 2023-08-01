@@ -62,8 +62,8 @@ export function generateConfig(opts: ConfigOpts): SemanticReleaseConfig {
       withVersionFile: opts?.wp?.withVersionFile ?? true,
       releasePath: opts?.wp?.releasePath ?? '/tmp/wp-release',
       versionFiles: opts?.wp?.versionFiles ?? [],
-      include: opts?.wp?.include ?? [],
-      exclude: opts?.wp?.exclude ?? [],
+      include: opts?.wp?.include ?? undefined,
+      exclude: opts?.wp?.exclude ?? undefined,
     },
   ]);
 
