@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.0.0...v1.0.1) (2023-08-01)
+
+
+### Bug Fixes
+
+* Include exclude defaults ([b64a8f6](https://github.com/oblakstudio/semantic-release-wp-config/commit/b64a8f6bcddc55ddab17dc080fe9c4e22d715327))
+
 # 1.0.0 (2023-08-01)
 
 
