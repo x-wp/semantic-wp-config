@@ -1,18 +1,13 @@
 {
-<<<<<<< HEAD
   "name": "semantic-release-wordpress-config",
   "version": "0.0.0",
-=======
-  "name": "semantic-release-wp-config",
-  "version": "1.1.0",
->>>>>>> f78aee5ac27e049dd9be26381021056007145acb
   "license": "MIT",
   "contributors": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/oblakstudio/semantic-release-wp-config.git"
   },
-  "bugs": "https://githu.com/your_org/semantic-release-wp-config/issues",
+  "bugs": "https://githu.com/oblakstudio/semantic-release-wp-config/issues",
   "keywords": [],
   "author": {
     "name": "Oblak Studio",
