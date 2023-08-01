@@ -1,6 +1,6 @@
 {
-  "name": "semantic-release-wp-config",
-  "version": "1.0.0",
+  "name": "semantic-release-wordpress-config",
+  "version": "0.0.0",
   "license": "MIT",
   "contributors": [],
   "repository": {
@@ -21,8 +21,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "release:test": "node ./node_modules/semantic-release/bin/semantic-release.js --dry-run",
-    "release": "node ./node_modules/semantic-release/bin/semantic-release.js"
+    "release:test": "semantic-release --dry-run",
+    "release": "semantic-release"
   },
   "engines": {
     "node": ">= 18"
@@ -33,7 +33,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.0.4",
-    "semantic-release-wp-plugin": "^1.0"
+    "semantic-release-wp-plugin": "^1.2"
   },
   "devDependencies": {
     "@semantic-release/exec": "^6.0.3",
@@ -70,6 +70,7 @@
     "testEnvironment": "node"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   }
 }
