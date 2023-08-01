@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.0.0...v1.1.0) (2023-07-31)
+
+
+### Bug Fixes
+
+* Restored @sr/exec package ([044d3ac](https://github.com/oblakstudio/semantic-release-wp-config/commit/044d3ac2fbbdf2e8561d6269de2cd9757b1be7b3))
+
+
+### Features
+
+* implemented wp pack plugin ([5e8cfc6](https://github.com/oblakstudio/semantic-release-wp-config/commit/5e8cfc6725e8662f60f0fc8a3f3eaa5b8f842cde))
+
 # 1.0.0 (2023-07-28)
 
 
