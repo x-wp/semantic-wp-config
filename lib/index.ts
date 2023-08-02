@@ -79,16 +79,16 @@ export function generateConfig(opts: ConfigOpts): SemanticReleaseConfig {
         opts?.wp?.releasePath ?? '/tmp/wp-release',
         'package.zip',
       ),
-      label: assetName + ' v${nextRelease.version}',
-      name: assetLabel + '-${nextRelease.version}.zip',
+      label: assetLabel + ' v${nextRelease.version}',
+      name: assetName + '-${nextRelease.version}.zip',
     },
   ];
 
   if (opts?.publishAssets) {
     ghAssets.push({
       path: path.join(opts?.wp?.releasePath ?? '/tmp/wp-release', 'assets.zip'),
-      label: assetName + ' Assets v${nextRelease.version}',
-      name: assetLabel + '-assets-${nextRelease.version}.zip',
+      label: assetLabel + ' Assets v${nextRelease.version}',
+      name: assetName + '-assets-${nextRelease.version}.zip',
     });
   }
 
