@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.1.0...v1.1.1) (2023-08-02)
+
+
+### Bug Fixes
+
+* Fixed asset labels ([dc428e1](https://github.com/oblakstudio/semantic-release-wp-config/commit/dc428e11f96f4fdb40e58c49892a7fa56d2181d6))
+
 # [1.1.0](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.0.1...v1.1.0) (2023-08-02)
 
 
