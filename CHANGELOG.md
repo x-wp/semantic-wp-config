@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.0.1...v1.1.0) (2023-08-02)
+
+
+### Features
+
+* Moved WP plugin to peer dep ([50143d8](https://github.com/oblakstudio/semantic-release-wp-config/commit/50143d86b29eac708a7e2e3403304afad9b60349))
+
 ## [1.0.1](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.0.0...v1.0.1) (2023-08-01)
 
 
