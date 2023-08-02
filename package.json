@@ -32,8 +32,7 @@
   "dependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^9.0.4",
-    "semantic-release-wp-plugin": "^1.3"
+    "@semantic-release/github": "^9.0.4"
   },
   "devDependencies": {
     "@semantic-release/exec": "^6.0.3",
@@ -50,7 +49,8 @@
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "semantic-release": "^21"
+    "semantic-release": "^21",
+    "semantic-release-wp-plugin": "^1.3"
   },
   "jest": {
     "moduleFileExtensions": [
