@@ -43,14 +43,17 @@ export function generateConfig(opts: ConfigOpts): SemanticReleaseConfig {
 
   baseConfig.plugins.push('@semantic-release/commit-analyzer');
   baseConfig.plugins.push('@semantic-release/release-notes-generator');
-  baseConfig.plugins.push([
-    '@semantic-release/git',
-    {
-      assets: ['CHANGELOG.md'],
-      message:
-        'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
-    },
-  ]);
+
+  if (opts?.changelog) {
+    baseConfig.plugins.push([
+      '@semantic-release/git',
+      {
+        assets: ['CHANGELOG.md'],
+        message:
+          'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+      },
+    ]);
+  }
 
   baseConfig.plugins.push([
     'semantic-release-wp-plugin',
@@ -67,22 +70,25 @@ export function generateConfig(opts: ConfigOpts): SemanticReleaseConfig {
     },
   ]);
 
+  const assetName = opts.type === 'plugin' ? opts.slug : `${opts.slug}-theme`;
+  const assetLabel = opts.type === 'plugin' ? opts.name : `${opts.name} Theme`;
+
   const ghAssets = [
     {
       path: path.join(
         opts?.wp?.releasePath ?? '/tmp/wp-release',
         'package.zip',
       ),
-      label: opts.name + ' v${nextRelease.version}',
-      name: opts.slug + '-${nextRelease.version}.zip',
+      label: assetName + ' v${nextRelease.version}',
+      name: assetLabel + '-${nextRelease.version}.zip',
     },
   ];
 
   if (opts?.publishAssets) {
     ghAssets.push({
       path: path.join(opts?.wp?.releasePath ?? '/tmp/wp-release', 'assets.zip'),
-      label: opts.name + ' Assets v${nextRelease.version}',
-      name: opts.slug + '-assets-${nextRelease.version}.zip',
+      label: assetName + ' Assets v${nextRelease.version}',
+      name: assetLabel + '-assets-${nextRelease.version}.zip',
     });
   }
 
