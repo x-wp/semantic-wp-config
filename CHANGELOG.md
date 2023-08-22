@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.2.0...v1.2.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* Fixed package namespace ([a287599](https://github.com/oblakstudio/semantic-release-wp-config/commit/a2875990d66f3a30fda483777dcb902d0d1ba43c))
+
 # [1.2.0](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.1.2...v1.2.0) (2023-08-22)
 
 
