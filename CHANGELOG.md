@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.1.2...v1.2.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* **build:** Added GPG signing ([84a6cae](https://github.com/oblakstudio/semantic-release-wp-config/commit/84a6cae8c06af159a8409f1dfd9535f3d8eb3acc))
+
+
+### Features
+
+* Switched peer dep ([c6731e8](https://github.com/oblakstudio/semantic-release-wp-config/commit/c6731e844bc184204eb4439cf6c8ca03bee910e0))
+
 ## [1.1.2](https://github.com/oblakstudio/semantic-release-wp-config/compare/v1.1.1...v1.1.2) (2023-08-02)
 
 
