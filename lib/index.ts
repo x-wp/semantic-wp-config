@@ -56,7 +56,7 @@ export function generateConfig(opts: ConfigOpts): SemanticReleaseConfig {
   }
 
   baseConfig.plugins.push([
-    'semantic-release-wp-plugin',
+    '@semantic-release/wordpress',
     {
       type: opts.type,
       slug: opts.slug,
