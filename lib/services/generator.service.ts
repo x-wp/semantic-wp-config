@@ -71,8 +71,6 @@ export class Generator {
       },
     ]);
 
-    console.log(JSON.stringify(srConfig, null, 2));
-
     return srConfig;
   }
 
@@ -103,6 +101,7 @@ export class Generator {
       commitOpts: config.commitOpts || def.commitOpts,
       wp: {
         slug: slug,
+        type: config.type || def.type,
         withAssets:
           wp?.withAssets || this.pathExists('.wordpress-org', 'assets'),
         withReadme:
