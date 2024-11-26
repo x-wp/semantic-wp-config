@@ -1,0 +1,8 @@
+{
+  "extra": {
+    "release": {
+      "slug": "test-plugin",
+      "name": "Test Plugin"
+    }
+  }
+}

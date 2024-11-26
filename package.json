@@ -21,13 +21,15 @@
   "engines": {
     "node": ">= 18"
   },
+  "bin": "./bin/cli",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
+    "commander": "^12.1.0",
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {
-    "@semantic-release/wordpress": "^1.6.5",
+    "@semantic-release/wordpress": "^1.6.6",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.3",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
@@ -40,10 +42,8 @@
     "rimraf": "^5.0.1",
     "semantic-release": "^24.1.1",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.1.6"
-  },
-  "peerDependencies": {
-    "@semantic-release/wordpress": "^1.6"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   },
   "publishConfig": {
     "access": "public",

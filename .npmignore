@@ -1,12 +1,14 @@
 .github
 coverage
 lib
+test
 .editorconfig
 .eslintrc.js
 .gitignore
 .nvmrc
 .prettierrc
 .releaserc
+jest.config.ts
 LICENSE
 tsconfig.json
 tsconfig.build.json

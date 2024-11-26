@@ -1,6 +1,5 @@
-import { generateConfig } from './functions/generate-config.fn';
+import { createConfig } from './functions/create-config.fn';
 import { SemanticWpConfig, WpReleaseConfig } from './interfaces';
-import { PackageType } from './enums';
 
-export { SemanticWpConfig, WpReleaseConfig, PackageType };
-export default generateConfig;
+export { SemanticWpConfig, WpReleaseConfig };
+export default createConfig;

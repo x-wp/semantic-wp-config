@@ -1,1 +1,1 @@
-export * from './generate-config.fn';
+export * from './create-config.fn';
